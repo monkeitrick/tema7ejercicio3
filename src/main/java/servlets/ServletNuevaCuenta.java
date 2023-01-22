@@ -26,7 +26,7 @@ import beans.Cuenta;
 
 public class ServletNuevaCuenta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String[] noAutorizados= {"Juan Perez","Joselito Fernandez","Diego Pablo","Miguel Hernandez","Adrian Garrido"};
+	private static String[] noAutorizados= {"Juan Perez","Joselito Fernandez","Diego Pablo","Miguel Hernandez","Adrian Garrido"};
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,8 +47,8 @@ public class ServletNuevaCuenta extends HttpServlet {
 //				System.out.println("entra");
 				errores="Saldo Negativo";
 				request.getSession().setAttribute("error", errores);
-				Cuenta c= new Cuenta(nombre, 0);
-				request.getSession().setAttribute("cuenta", c);
+//				Cuenta c= new Cuenta(nombre, 0);
+//				request.getSession().setAttribute("cuenta", c);
 				response.sendRedirect("nuevaCuenta.jsp");
 //				System.out.println("saldo negativo");
 			}
@@ -57,8 +57,8 @@ public class ServletNuevaCuenta extends HttpServlet {
 					if(nombre.equals(no)) {
 						errores="Usuario no permitido";
 						request.getSession().setAttribute("error", errores);
-						Cuenta c= new Cuenta("", saldo);
-						request.getSession().setAttribute("cuenta", c);
+//						Cuenta c= new Cuenta("", saldo);
+//						request.getSession().setAttribute("cuenta", c);
 						response.sendRedirect("nuevaCuenta.jsp");
 //						System.out.println("no vale");
 					}
@@ -69,12 +69,14 @@ public class ServletNuevaCuenta extends HttpServlet {
 			System.out.println("entra1");
 			errores="Usuario vacio";
 			request.getSession().setAttribute("error", errores);
-			Cuenta c= new Cuenta("", saldo);
-			request.getSession().setAttribute("cuenta", c);
+//			Cuenta c= new Cuenta("", saldo);
+//			request.getSession().setAttribute("cuenta", c);
 			response.sendRedirect("nuevaCuenta.jsp");
 //			System.out.println("ususario VAcio");
 		}
 		Cuenta c= new Cuenta(nombre, saldo);
+		request.getSession().setAttribute("cuenta", c);
+		response.sendRedirect("movimientos.jsp");
 //		System.out.println("funciona");
 	}
 

@@ -18,9 +18,15 @@ public class Cuenta {
 		return true;
 		}
 	}
-	
 	public void ingresar(int cantidad) {
 		saldo=saldo+cantidad;
 	}
+	public String getTitular() {
+		return titular;
+	}
+	public int getSaldo() {
+		return saldo;
+	}
+	
 	
 }
